@@ -1,0 +1,7 @@
+{
+  "name": "MyCustomLifeApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
