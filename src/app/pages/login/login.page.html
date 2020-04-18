@@ -1,0 +1,42 @@
+
+<ion-content>
+  <img id="logo-company" src="https://res.cloudinary.com/doiz6iue3/image/upload/v1585841461/logo-1024x1024px_xqgxq6.png" />
+  <p class="ion-text-center" >Construindo Conhecimento</p>
+  <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <div class="email">
+      <ion-input type="email" placeholder="Email" formControlName="email" clearInput autocapitalize="off" inputmode="email">
+      </ion-input>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validationMessages.email">
+          <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span translate>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <br/>
+    <div class="password">
+      <ion-input clearInput type="password" placeholder="Password" formControlName="password">
+      </ion-input>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      
+    </div>
+    <br/>
+    <div>
+        <ion-button type="submit" expand="block" class="login-button" >Login</ion-button>
+    </div>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center" style="font-size: 14px;">Don't have an account? Sign UP</ion-title>
+  </ion-toolbar>
+</ion-footer>
