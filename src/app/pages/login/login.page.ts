@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthApiService } from 'src/app/services/http-request/auth/auth-api.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,8 @@ export class LoginPage implements OnInit {
       { type: 'minlength', message: 'Login.ErrorPasswordMustBeAtLeast' }
     ]
   };
-  constructor() {
-    this.initForm()
+  constructor(public authService: AuthApiService) {
+    this.initForm();
    }
 
   initForm() {
@@ -42,8 +43,16 @@ export class LoginPage implements OnInit {
   doLogin() {
     const email = this.loginForm.controls.email.value,
         password = this.loginForm.controls.password.value;
-    console.log('Login email: ', email);
-    console.log('Login password: ', password);
+    try {
+     const response = this.authService.postLogin({
+       loader: [true],
+       email, password
+     });
+     // add localStorage
+     console.log(response);
+    } catch(e) {
+      console.warn('LoginPage (login): ', e);
+    }
   }
 
 }
