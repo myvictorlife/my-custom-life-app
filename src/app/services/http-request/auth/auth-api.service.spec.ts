@@ -1,12 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
 
 import { AuthApiService } from './auth-api.service';
+import { LoadingService } from '../../wrappers/loading/loading.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { LoadingControllerMock } from 'src/core/ionic/loading-mock.spect';
 
 describe('AuthApiService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: AuthApiService = TestBed.get(AuthApiService);
-    expect(service).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        LoadingService,
+        { provide: LoadingController, useClass: LoadingControllerMock }
+      ]
+    });
   });
+
+  it('should be created', inject( [LoadingService], (service: LoadingService) => {
+    expect(service).toBeTruthy();
+  }));
 });

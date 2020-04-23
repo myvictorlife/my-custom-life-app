@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthApiService } from '../../services/http-request/auth/auth-api.service';
+import { LoadingService } from '../../services/wrappers/loading/loading.service';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -15,6 +17,10 @@ describe('LoginPage', () => {
         IonicModule.forRoot(),
         ReactiveFormsModule,
         FormsModule
+      ],
+      providers: [
+        AuthApiService,
+        LoadingService
       ]
     }).compileComponents();
 

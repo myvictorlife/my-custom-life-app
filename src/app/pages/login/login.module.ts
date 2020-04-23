@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { AuthApiService } from 'src/app/services/http-request/auth/auth-api.service';
+import { AuthApiService } from '../../services/http-request/auth/auth-api.service';
+import { LoadingService } from '../../services/wrappers/loading/loading.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { AuthApiService } from 'src/app/services/http-request/auth/auth-api.serv
     ReactiveFormsModule
   ],
   providers: [
-    AuthApiService
+    AuthApiService,
+    LoadingService
   ],
   declarations: [LoginPage]
 })

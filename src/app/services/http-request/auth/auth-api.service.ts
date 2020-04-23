@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoadingService } from '../../wrappers/loading/loading.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthApiService {
 
   constructor(public loading: LoadingService) { }
@@ -26,5 +24,9 @@ export class AuthApiService {
       await this.loading.showLoading(false);
     }
     return data;
+  }
+
+  public testValue() {
+    return '10';
   }
 }
