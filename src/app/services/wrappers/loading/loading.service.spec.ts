@@ -2,8 +2,8 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { LoadingService } from './loading.service';
 import { LoadingController } from '@ionic/angular';
-import { LoadingControllerMock } from '../../../../core/ionic/loading-mock.spect';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { LoadingControllerMock } from '../../../../core/mocks/ionic/loading-mock.spect';
 
 describe('LoadingService', () => {
   beforeEach(() => {
