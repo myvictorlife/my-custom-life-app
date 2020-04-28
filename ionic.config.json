@@ -1,7 +1,8 @@
 {
   "name": "MyCustomLifeApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "177510ab"

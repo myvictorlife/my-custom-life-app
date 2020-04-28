@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthApiService } from 'src/app/services/http-request/auth/auth-api.service';
+import { AnalyticsService } from 'src/app/services/wrappers/analytics/analytics.service';
+import { AppConstants } from 'src/constants/app.constants';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
   validationMessages = {
@@ -20,9 +22,17 @@ export class LoginPage implements OnInit {
       { type: 'minlength', message: 'Login.ErrorPasswordMustBeAtLeast' }
     ]
   };
-  constructor(public authService: AuthApiService) {
+  public appConstants = AppConstants;
+  constructor(
+    public authService: AuthApiService,
+    public analyticsService: AnalyticsService,
+    ) {
     this.initForm();
    }
+
+  public ngAfterViewInit() {
+    this.analyticsService.logPage(this.appConstants.PAGES_NAMES.LOGIN_PAGE)
+  }
 
   initForm() {
     this.loginForm = new FormGroup({
@@ -41,8 +51,7 @@ export class LoginPage implements OnInit {
   }
 
   doLogin() {
-    const email = this.loginForm.controls.email.value,
-        password = this.loginForm.controls.password.value;
+    const { email, password } = this.loginForm.getRawValue();
     try {
      const response = this.authService.postLogin({
        loader: [true],

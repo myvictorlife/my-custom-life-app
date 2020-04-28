@@ -1,7 +1,8 @@
 export class AppConstants {
 
     public static PAGES_NAMES = {
-        LOGIN_PAGE: 'Login'
+        LOGIN_PAGE: 'Login',
+        PARTNERS: 'Partners'
     };
 
     public static API_CONFIG = {
