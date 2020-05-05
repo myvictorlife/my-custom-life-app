@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -19,7 +20,7 @@ import { Firebase } from '@ionic-native/firebase/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Firebase
+    FirebaseAnalytics
   ],
   bootstrap: [AppComponent]
 })

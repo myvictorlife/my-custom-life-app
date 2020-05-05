@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PartnersPage } from './partners.page';
 import { AnalyticsService } from '../../services/wrappers/analytics/analytics.service';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 describe('PartnersPage', () => {
   let component: PartnersPage;
@@ -15,8 +15,7 @@ describe('PartnersPage', () => {
       imports: [IonicModule.forRoot()],
       providers: [
         AnalyticsService,
-        Firebase,
-        { provide: Firebase, useClass: Firebase },
+        FirebaseAnalytics
       ]
     }).compileComponents();
 

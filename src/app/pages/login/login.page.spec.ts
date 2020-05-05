@@ -9,7 +9,7 @@ import { LoadingService } from '../../services/wrappers/loading/loading.service'
 import { HttpClientService } from '../../services/wrappers/http-client/http-client.service';
 import { HttpClientMock } from '../../../core/mocks/custom/http-client-mock.spec';
 import { AnalyticsService } from '../../services/wrappers/analytics/analytics.service';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -29,8 +29,7 @@ describe('LoginPage', () => {
         AuthApiService,
         LoadingService,
         HttpClientService,
-        Firebase,
-        { provide: Firebase, useClass: Firebase },
+        FirebaseAnalytics,
         { provide: HttpClient, useClass: HttpClientMock}
       ]
     }).compileComponents();

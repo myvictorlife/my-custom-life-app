@@ -1,8 +1,12 @@
 {
-  "name": "MyCustomLifeApp",
+  "name": "my-custom-life-app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "My Custom Life",
+  "homepage": "http://mycustom.life/",
+  "keywords": [
+    "Caterpillar",
+    "FastRent"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,8 +14,22 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "@resources": "cordova-res ios && cordova-res android && node scripts/resources.js",
+    "@browser-dev": "npx cap serve",
+    "@add-android-platform": "npx cap add android",
+    "@remove-android-platform": "rm -rf android/",
+    "@add-ios-platform": "npx cap add ios",
+    "@remove-ios-platform": "rm -rf ios/",
     "@build-ios": "ionic build && npx copy ios && npx cap open ios",
-    "@build-android": "ionic build && npx copy android && npx cap open android"
+    "@build-prod": "ionic build --prod --release",
+    "@update-android-capacitor": "npx copy android && npx cap open android",
+    "@update-ios-capacitor": "npm run @resources && npx copy ios && npx cap open ios",
+    "@build-android": "npm run @build-prod && npm run @update-capacitor",
+    "@build-android-prod": "npm run @build-prod && npm run @remove-android-platform && npm run @add-android-platform && npm run @update-android-capacitor",
+    "@update-pod-ios" : "cd ios/App/ && pod update",
+    "@build-init-ios-prod": "npm run @build-prod && npm run @add-ios-platform && npm run @update-pod-ios && npm run @update-ios-capacitor",
+    "@build-ios-prod": "npm run @build-prod && npm run @update-ios-capacitor",
+    "@firebase-build-prod": "npm run @build-prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -26,9 +44,11 @@
     "@capacitor/ios": "2.0.1",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/firebase": "^5.24.0",
+    "@ionic-native/firebase-analytics": "^5.24.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
+    "cordova-plugin-firebase-analytics": "^4.2.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -59,7 +79,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
+  "description": "My Custom Life Application",
   "cordova": {
     "plugins": {}
   }

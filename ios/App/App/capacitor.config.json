@@ -1,8 +1,0 @@
-{
-  "appId": "com.my.custom.life.app",
-  "appName": "My Custom Life",
-  "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "www",
-  "cordova": {}
-}

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Injectable()
 export class AnalyticsService {
 
     constructor(
-        public firebase: Firebase
+        private firebaseAnalytics: FirebaseAnalytics
     ) {}
 
-    public logPage(pageName: string) {
+    public async logPage(pageName: string) {
         try {
             console.log('PageLoad Firebase Report: ' + pageName);
-            this.firebase.setScreenName(pageName);
+            const response = this.firebaseAnalytics.logEvent('page_view', {page: pageName});
+            // console.log('Firebase Analytics', response);
         } catch (e) {
             console.warn(`AnalyticsService: Failed to load page ${pageName}`, e);
         }
